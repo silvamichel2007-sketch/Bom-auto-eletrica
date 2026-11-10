@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#10192e">
-<title>Mecânica Lopes</title><link rel="manifest" href="./manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="Mecânica Lopes"><link rel="apple-touch-icon" href="./icon-192.png">
+<title>BOM AUTO ELÉTRICA</title><link rel="manifest" href="./manifest.webmanifest"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="BOM AUTO ELÉTRICA"><link rel="apple-touch-icon" href="./icon-192.png">
 <style>
 :root{--navy:#17324d;--blue:#176b87;--bg:#f3f6f8;--line:#d7e0e6;--muted:#617381}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font:15px system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:#17232d}
@@ -66,7 +66,7 @@ button.secondary{background:#e8eff3;color:var(--navy)}button.danger{background:#
 .print-only{display:none}
 .recommendation-box{border:1px solid #b8cfdf;border-radius:10px;padding:12px;background:#f6fbff}.recommendation-photos{margin-top:12px;padding-top:12px;border-top:1px solid #c8dce8}
 
-/* Visual vibrante Mecânica Lopes — somente interface, sem alterar lógica */
+/* Visual vibrante BOM AUTO ELÉTRICA — somente interface, sem alterar lógica */
 @media screen {
 :root{--navy:#1744b5;--blue:#087ee8;--bg:#eef5ff;--line:#d6e4f7;--muted:#536681}
 body{background:linear-gradient(145deg,#e6f4ff 0%,#f5efff 48%,#e9fff4 100%);color:#172b49}
@@ -156,7 +156,7 @@ body.light-mode #modoVisual{background:#fff;color:#1744b5;border-color:#dbe6f8}
 }
 </style><script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script></head>
 <body>
-<header><div class="header-layout"><div class="header-info"><h1>Mecânica Lopes</h1><button type="button" id="modoVisual" class="no-print" aria-label="Alternar modo claro e escuro">☀ Modo claro</button><p>Rua Aracaju, 156 · Santa Clara · Vespasiano – MG</p><p>CNPJ: 13.754.070/0001-87</p><p>Telefone / WhatsApp: (31) 98639-4517</p><p>PIX: CNPJ 13754070000187 · CPF 39901041600 · Celular 31986394517</p><p>Orçamento · Diagnóstico técnico · Registro de imagens</p></div><div class="pix-header"><span><strong>Pague por PIX</strong><br>Recebedor: Mecânica Lopes<br>Chaves PIX: CNPJ 13754070000187<br>CPF 39901041600 · Celular (31) 98639-4517</span></div></div></header>
+<header><div class="header-layout"><div class="header-info"><h1>BOM AUTO ELÉTRICA</h1><button type="button" id="modoVisual" class="no-print" aria-label="Alternar modo claro e escuro">☀ Modo claro</button><p>Rua Paranapanema, nº 998</p><p>CNPJ: 62.066.993/0001-51</p><p>Telefone / WhatsApp: (18) 99734-9034</p><p>E-mail: matheusbom1911@gmail.com</p><p>PIX: Celular 18997349034</p><p>Orçamento · Diagnóstico técnico · Registro de imagens</p></div><div class="pix-header"><span><strong>Pague por PIX</strong><br>Recebedor: BOM AUTO ELÉTRICA<br>Chave PIX: Celular 18997349034<br>Celular (18) 99734-9034</span></div></div></header>
 <main>
 <section class="card no-print"><h2>Dados salvos neste celular</h2><p>Este aplicativo funciona sem conta e sem sincronização. Use Fazer backup regularmente e guarde o arquivo em local seguro. Não apague os dados do navegador.</p></section>
 <section class="card">
@@ -262,7 +262,7 @@ function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;',
 const fields=['cliente','telefone','veiculo','ano','placa','km','relato','diagnostico','recomendacao','desconto','validade','status','garantia'];
 function collect(){return {id:currentId||String(Date.now()),date:new Date().toLocaleString('pt-BR'),fields:Object.fromEntries(fields.map(f=>[f,$(f).value])),items:[...document.querySelectorAll('.item')].map(r=>({desc:r.querySelector('.desc').value,value:r.querySelector('.value').value})),photos,defectPhotos,total:calc()}}
 function apply(r){currentId=r.id;fields.forEach(f=>$(f).value=r.fields[f]||'');$('items').innerHTML='';(r.items||[]).forEach(i=>addItem(i.desc,i.value));photos=r.photos||[];defectPhotos=r.defectPhotos||[];renderPhotos();calc();$('notice').textContent='Orçamento carregado.'}
-function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open('OrcamentoLopesDB',1);req.onupgradeneeded=()=>req.result.createObjectStore('orcamentos',{keyPath:'id'});req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open('OrcamentoBomAutoEletricaDB',1);req.onupgradeneeded=()=>req.result.createObjectStore('orcamentos',{keyPath:'id'});req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
 async function saveRecord(){const r=collect();const db=await openDB();await new Promise((res,rej)=>{const tx=db.transaction('orcamentos','readwrite');tx.objectStore('orcamentos').put(r);tx.oncomplete=res;tx.onerror=()=>rej(tx.error)});currentId=r.id;$('notice').textContent='Orçamento salvo neste aparelho.';await loadRecords()}
 function normalizePlate(value){return String(value||'').toUpperCase().replace(/[^A-Z0-9]/g,'')}
 function renderRecords(){
@@ -284,16 +284,16 @@ async function backupRecords(){
  const db=await openDB();
  const all=await new Promise((res,rej)=>{const q=db.transaction('orcamentos').objectStore('orcamentos').getAll();q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error)});
  db.close();
- const payload={app:'Mecanica Lopes - Orcamentos',formatVersion:1,exportedAt:new Date().toISOString(),records:all};
+ const payload={app:'Bom Auto Eletrica - Orcamentos',formatVersion:1,exportedAt:new Date().toISOString(),records:all};
  const blob=new Blob([JSON.stringify(payload)],{type:'application/json'});
  const url=URL.createObjectURL(blob);const a=document.createElement('a');
- a.href=url;a.download='backup_mecanica_lopes_'+new Date().toISOString().slice(0,10)+'.json';
+ a.href=url;a.download='backup_bom_auto_eletrica_'+new Date().toISOString().slice(0,10)+'.json';
  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
  $('notice').textContent=`Backup gerado: ${all.length} orçamento(s), incluindo fotos anexadas.`;
 }
 async function restoreRecords(file){
  const raw=await file.text();const data=JSON.parse(raw);
- if(data.app!=='Mecanica Lopes - Orcamentos'||data.formatVersion!==1||!Array.isArray(data.records))throw new Error('Este arquivo não é um backup válido da Mecânica Lopes.');
+ if(data.app!=='Bom Auto Eletrica - Orcamentos'||data.formatVersion!==1||!Array.isArray(data.records))throw new Error('Este arquivo não é um backup válido da BOM AUTO ELÉTRICA.');
  if(data.records.some(r=>!r||!r.id||typeof r.fields!=='object'))throw new Error('O backup contém um orçamento inválido.');
  if(!confirm(`Foram encontrados ${data.records.length} orçamento(s). A restauração vai mesclar esses registros com o histórico atual, sem apagar os outros. Continuar?`))return;
  const db=await openDB();
@@ -338,14 +338,14 @@ async function gerarPDF(compartilhar=false,tipo="orcamento"){
    doc.setFillColor(...purple);doc.rect(112,39,98,1.1,'F');
    doc.setDrawColor(48,67,95);doc.line(15,287,195,287);
    rgb(muted);doc.setFont('helvetica','normal');doc.setFontSize(7);
-   doc.text('MECÂNICA LOPES  |  DOCUMENTO DIGITAL',15,292);
+   doc.text('BOM AUTO ELÉTRICA  |  DOCUMENTO DIGITAL',15,292);
    doc.text('Página '+doc.internal.getNumberOfPages(),195,292,{align:'right'});
   };
   pageBase();
   // Nas páginas seguintes, usar apenas uma faixa compacta de identificação.
   const next=(h=7)=>{if(y+h>281){doc.addPage();pageBase();
    rgb(cyan);doc.setFont('helvetica','bold');doc.setFontSize(12);
-   doc.text('MECÂNICA LOPES',M,13);
+   doc.text('BOM AUTO ELÉTRICA',M,13);
    rgb(muted);doc.setFontSize(8);doc.text(tipo==='fatura'?'FATURA':'ORÇAMENTO',W-M,13,{align:'right'});
    y=21;rgb(ink);
   }};
@@ -373,12 +373,12 @@ async function gerarPDF(compartilhar=false,tipo="orcamento"){
   // Cabeçalho comum aos dois documentos. A conversão evita falhas com PNG no jsPDF.
   doc.setFillColor(17,27,47);doc.rect(0,0,W,39,'F');
   rgb(cyan);doc.setFont('helvetica','bold');doc.setFontSize(17);
-  doc.text('MECÂNICA LOPES',M,10);
+  doc.text('BOM AUTO ELÉTRICA',M,10);
   rgb(ink);doc.setFont('helvetica','normal');doc.setFontSize(7.4);
-  doc.text('Rua Aracaju, 156 - Santa Clara - Vespasiano - MG',M,15);
-  doc.text('CNPJ: 13.754.070/0001-87',M,19);
-  doc.text('Telefone / WhatsApp: (31) 98639-4517',M,23);
-  doc.text('PIX CNPJ: 13754070000187',M,27);
+  doc.text('Rua Paranapanema, 998',M,15);
+  doc.text('CNPJ: 62.066.993/0001-51',M,19);
+  doc.text('Telefone / WhatsApp: (18) 99734-9034',M,23);
+  doc.text('PIX celular: 18997349034',M,27);
   rgb(green);doc.setFont('helvetica','bold');doc.setFontSize(8.2);
   doc.text(tipo==='fatura'?'FATURA':'ORÇAMENTO',M,32);
   rgb(muted);doc.setFont('helvetica','normal');doc.setFontSize(6.7);
@@ -386,11 +386,11 @@ async function gerarPDF(compartilhar=false,tipo="orcamento"){
   const qrSrc=null;
   // Sem QR: o QR anterior era da G3 e não pode ser reutilizado.
   doc.setFont('helvetica','bold');doc.setFontSize(8);doc.setTextColor(255,255,255);
-  doc.text('CHAVES PIX',125,10);
+  doc.text('CHAVE PIX',125,10);
   doc.setFont('helvetica','normal');doc.setFontSize(7);
-  doc.text('CNPJ: 13754070000187',125,17);
-  doc.text('CPF: 39901041600',125,23);
-  doc.text('Celular: 31986394517',125,29);
+  doc.text('Celular: 18997349034',125,17);
+  doc.text('CNPJ: 62066993000151',125,23);
+  doc.text('E-mail: matheusbom1911@gmail.com',125,29);
   rgb(ink);
   // Cada conjunto de fotos mantém o título junto ao primeiro quadro,
   // inclusive quando é necessário iniciar uma nova página.
@@ -451,12 +451,12 @@ async function gerarPDF(compartilhar=false,tipo="orcamento"){
   await imageGroup('FOTOS APÓS O SERVIÇO EXECUTADO',r.photos);
   section('Condições');
   for(const [k,l] of [['validade','Validade'],['status','Situação'],['garantia','Garantia']])line(l,f[k]);
-  const filename=(tipo==='fatura'?'fatura_lopes_':'orcamento_lopes_')+(f.placa||'sem_placa').replace(/[^a-z0-9]/gi,'_')+'.pdf';
+  const filename=(tipo==='fatura'?'fatura_bom_auto_eletrica_':'orcamento_bom_auto_eletrica_')+(f.placa||'sem_placa').replace(/[^a-z0-9]/gi,'_')+'.pdf';
   const blob=doc.output('blob');
   if(compartilhar){
    const file=new File([blob],filename,{type:'application/pdf'});
    if(navigator.canShare?.({files:[file]})&&navigator.share){
-    try{await navigator.share({files:[file],title:(tipo==='fatura'?'Fatura':'Orçamento')+' Mecânica Lopes'});notice.textContent='Compartilhamento finalizado.'}
+    try{await navigator.share({files:[file],title:(tipo==='fatura'?'Fatura':'Orçamento')+' BOM AUTO ELÉTRICA'});notice.textContent='Compartilhamento finalizado.'}
     catch(e){notice.textContent=e.name==='AbortError'?'Compartilhamento cancelado.':'Erro ao compartilhar: '+e.message}
    }else{notice.textContent='Compartilhamento de arquivos não disponível. Use Gerar PDF.'}
   }else{
@@ -520,9 +520,9 @@ if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.se
 </script>
 
 <script>
-/* Lopes 2026: fotos compactadas e rascunho local independente do Firebase. */
+/* Bom Auto Eletrica 2026: fotos compactadas e rascunho local independente do Firebase. */
 (function(){
- const DRAFT_DB='LopesRascunhosSeguros', DRAFT_STORE='rascunhos', DRAFT_KEY='atual';
+ const DRAFT_DB='BomAutoEletricaRascunhos', DRAFT_STORE='rascunhos', DRAFT_KEY='atual';
  const LIMIT=8*1024*1024, TARGET=7.2*1024*1024;
  let timer=null, saving=false, restoring=false, dirty=false, savedSnapshot='';
  const indicator=document.getElementById('g3DraftStatus');
